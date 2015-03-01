@@ -27,7 +27,6 @@ Router.configure
 @ShopController = RouteController.extend
   waitOn: ->
     @subscribe "shops"
-    @subscribe "cart", Session.get "sessionId", Meteor.userId()
   onAfterAction: ->
     ReactionCore.MetaData.refresh(@route, @params)
     return
@@ -147,7 +146,6 @@ Router.map ->
       @subscribe "shipping"
       @subscribe "Packages"
       @subscribe "userOrders", Meteor.userId()
-      @subscribe "cart", Session.get "sessionId", Meteor.userId()
 
   #completed orders
   @route 'cartCompleted',
