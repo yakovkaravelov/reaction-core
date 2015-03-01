@@ -47,7 +47,10 @@ PackageFixture = ->
       exists = ReactionCore.Collections.Packages.findOne('name': item.name)
       if exists
         result = ReactionCore.Collections.Packages.upsert(
-          { 'name': item.name }, { $set: 'settings': item.settings },
+          { 'name': item.name }, {
+            $set: 'settings': item.settings
+            $set: 'enabled': item.enabled
+          },
           multi: true
           upsert: true
           validate: false)
@@ -187,7 +190,7 @@ Meteor.startup ->
     Shops.update({domains:currentDomain},{$set:{"domains.$":getDomain()}})
 
   # data conversion: we now set sessionId or userId, but not both
-  Cart.update {userId: { $exists : true, $ne : null }, sessionId: { $exists : true }}, {$unset: {sessionId: ""}}, {multi: true}
+  # Cart.update {userId: { $exists : true, $ne : null }, sessionId: { $exists : true }}, {$unset: {sessionId: ""}}, {multi: true}
 
   # notifiy that we're done with initialization
   ReactionCore.Events.info "Reaction Commerce initialization finished. "

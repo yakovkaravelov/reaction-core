@@ -34,6 +34,11 @@ ReactionCore.Schemas.Cart = new SimpleSchema
     type: String
     optional: true
     index: 1
+  email:
+    type: String
+    optional: true
+    index: 1
+    #TODO: add custom insert, auto-insert email if userId.
   items:
     type: [ReactionCore.Schemas.CartItem]
     optional: true
