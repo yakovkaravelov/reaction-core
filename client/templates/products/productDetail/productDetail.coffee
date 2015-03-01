@@ -125,7 +125,7 @@ Template.productDetail.events
         $('.cart-alert').toggle('slide',{
           direction: if i18n.t('languageDirection') == 'rtl' then 'left' else 'right',
           'width': currentVariant.title.length+50 + "px"
-        },600).delay(8000).toggle('slide',{
+        },600).delay(7000).toggle('slide',{
           direction: if i18n.t('languageDirection') == 'rtl' then 'left' else 'right'
         })
 

@@ -6,6 +6,6 @@
     {{#if cart.showCartIconWarning}}
     <div class="badge badge-warning">!</div>
     {{/if}}
-    <div class="badge">{{cart.cartCount}}</div>
+    <div class="badge">{{orElse cart.cartCount 0}}</div>
   </div>
 </template>
