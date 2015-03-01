@@ -1,6 +1,5 @@
 Template.cartCheckout.helpers
   cart: ->
-    Meteor.subscribe "cart", Session.get "sessionId", Meteor.userId()
     return Cart.findOne()
 
   loginStatus: () ->

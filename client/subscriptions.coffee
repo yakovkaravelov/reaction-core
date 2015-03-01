@@ -10,6 +10,8 @@ ReactionCore.Subscriptions.Sessions = Meteor.subscribe "Sessions", amplify.store
   Session.set "serverSession", serverSession
   Session.set "sessionId", serverSession._id
   amplify.store "ReactionCore.session", serverSession._id
+  # cart subscription should update server session changes.
+  ReactionCore.Subscriptions.cart = Meteor.subscribe "cart", serverSession._id, Meteor.userId()
 
 ###
 # General Subscriptions
@@ -22,7 +24,6 @@ ReactionCore.Subscriptions.customers = Meteor.subscribe "customers"
 ReactionCore.Subscriptions.tags = Meteor.subscribe "tags"
 ReactionCore.Subscriptions.media = Meteor.subscribe "media"
 ReactionCore.Subscriptions.FileStorage = Meteor.subscribe "FileStorage"
-ReactionCore.Subscriptions.cart = Meteor.subscribe "cart", Session.get "sessionId", Meteor.userId()
 
 ###
 #  Autorun dependencies

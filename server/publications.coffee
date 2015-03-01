@@ -18,7 +18,7 @@ Translations = ReactionCore.Collections.Translations
 # Load the session
 # If no session is loaded, creates a new one
 ###
-ServerSessions = new Mongo.Collection("Sessions")
+@ServerSessions = new Mongo.Collection("Sessions")
 Meteor.publish 'Sessions', (id) ->
   check id, Match.OneOf(String, null)
 
@@ -159,17 +159,15 @@ Meteor.publish 'userOrders', (userId) ->
 ###
 # cart collection
 ###
-Meteor.publish 'cart', (sessionId) ->
+Meteor.publish 'cart', (sessionId, userId) ->
   check sessionId, Match.OneOf(String, null)
-  return unless sessionId
-
+  check userId, Match.OneOf(String, null)
   shopId = ReactionCore.getShopId(@)
 
-  # createCart will create for session if necessary, update user if necessary,
-  # sync all user's carts, and return the cart
-  cart = createCart sessionId, @userId, shopId
-
-  return Cart.find _id: cart._id
+  # getCurrentCart returns cursor
+  currentCart = getCurrentCart sessionId, shopId, @userId
+  ReactionCore.Events.debug "Publishing cart sessionId:" + sessionId
+  return currentCart
 
 ###
 # tags

@@ -195,7 +195,7 @@ Meteor.startup ->
     Shops.update({domains:currentDomain},{$set:{"domains.$":getDomain()}})
 
   # data conversion: we now set sessionId or userId, but not both
-  Cart.update {userId: { $exists : true, $ne : null }, sessionId: { $exists : true }}, {$unset: {sessionId: ""}}, {multi: true}
+  # Cart.update {userId: { $exists : true, $ne : null }, sessionId: { $exists : true }}, {$unset: {sessionId: ""}}, {multi: true}
 
   # notifiy that we're done with initialization
   ReactionCore.Events.info "Reaction Commerce initialization finished. "
