@@ -76,21 +76,24 @@ Meteor.methods
   addressBookAdd: (doc, updateDoc, currentDoc) ->
     check doc, ReactionCore.Schemas.Address
     check updateDoc, Object
-    check currentDoc, null
+    check currentDoc, Match.OneOf(String, null)
     @unblock()
+    sessionId = currentDoc
 
     # add address
     currentUserId = Meteor.userId()
     if doc.isShippingDefault
-      Meteor.users.update
-        _id: currentUserId
+      ReactionCore.Collections.Accounts.update
+        userId: currentUserId
+        sessionId: sessionId
         "profile.addressBook.isShippingDefault": true
       ,
         $set:
           "profile.addressBook.$.isShippingDefault": false
     if doc.isBillingDefault
-      Meteor.users.update
-        _id: currentUserId
+      ReactionCore.Collections.Accounts.update
+        userId: currentUserId
+        sessionId: sessionId
         "profile.addressBook.isBillingDefault": true
       ,
         $set:
@@ -98,7 +101,7 @@ Meteor.methods
     # Add new address
     doc._id = Random.id()
 
-    return Meteor.users.update _id: currentUserId, {$addToSet: {"profile.addressBook": doc}}
+    return ReactionCore.Collections.Accounts.upsert userId: currentUserId, sessionId: sessionId, {$addToSet: {"profile.addressBook": doc}}
 
   ###
   # method to update existing address in user's profile

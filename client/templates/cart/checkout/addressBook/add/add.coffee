@@ -1,9 +1,11 @@
 Template.addressBookAdd.helpers
   addressBookExists: ->
-    return Meteor.user().profile.addressBook
+    account = ReactionCore.Collections.Accounts.findOne()
+    if account?.profile?.addressBook then return true
 
   thisAddress: ->
-    thisAddress = {'fullName': Meteor.user().profile?.name}
+    account = ReactionCore.Collections.Accounts.findOne()
+    thisAddress = {'fullName': account?.profile?.name, _id: Session.get "sessionId" }
     if Session.get("address")
       thisAddress.postal = Session.get("address").zipcode
       thisAddress.country = Session.get("address").countryCode
