@@ -52,7 +52,6 @@ Package.onUse(function (api) {
     api.use("aldeed:autoform@4.2.2");
     api.use("aldeed:template-extension@3.1.1","client");
     api.use("iron:router@1.0.7");
-    api.use("prinzdezibel:accounts-guest@0.1.3");
     api.use("ongoworks:speakingurl@1.0.5");
     api.use("ongoworks:pdf@1.1.0");
     api.use("ongoworks:bunyan-logger@1.0.0");
@@ -112,7 +111,7 @@ Package.onUse(function (api) {
     "common/helpers.coffee",
     "common/routing.coffee",
     "common/schemas/packages.coffee",
-    "common/schemas/users.coffee",
+    "common/schemas/accounts.coffee",
     "common/schemas/shops.coffee",
     "common/schemas/shipping.coffee",
     "common/schemas/products.coffee",

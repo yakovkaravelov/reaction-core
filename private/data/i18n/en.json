@@ -75,16 +75,16 @@
                 "cartDrawerItems": {
                     "left": "left"
                 },
-                "cartCheckout": {
-                    "loginCompleted": "Login completed"
-                },
                 "cartCompleted": {
                     "thankYou": "Thank you.",
                     "yourOrderHasBeen": "Your order has been",
                     "summaryMessage": "Thank you for your order."
                 },
                 "checkoutLogin": {
-                    "createOrLogin": "Create an account or sign in to continue"
+                    "loginCompleted": "Account completed"
+                    "createOrLogin": "Sign in, or checkout as a guest",
+                    "continueAsGuest": "Continue as Guest",
+                    "guestMessage": "You can checkout without creating an account. You'll have a chance to create an account later."
                 },
                 "addressBookGrid": {
                     "chooseAddress": "Choose shipping & billing address",
@@ -128,7 +128,7 @@
                     "isCommercial": "This is a commercial address."
                 },
                 "checkoutProgressBar": {
-                    "login": "Login",
+                    "login": "Account",
                     "shippingBilling": "Address Details",
                     "shippingOptions": "Shipping Options",
                     "reviewPayment": "Review",

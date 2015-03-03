@@ -2,7 +2,7 @@
     {
         "_id": "WvrKDomkYth3THbDD",
         "baseUOM": "OZ",
-        "canCheckoutAsGuest": false,
+        "canCheckoutAsGuest": true,
         "currencies": {
             "AED": {
                 "format": "%v %s",

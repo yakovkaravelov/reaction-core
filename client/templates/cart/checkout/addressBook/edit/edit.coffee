@@ -1,7 +1,8 @@
 Template.addressBookEdit.helpers
   thisAddress: ->
+    account = ReactionCore.Collections.Accounts.findOne()
     addressId = Session.get "addressBookView"
-    for address in Meteor.user().profile.addressBook
+    for address in account.profile.addressBook
       if address._id is addressId
         thisAddress = address
     return thisAddress

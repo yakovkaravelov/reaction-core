@@ -1,6 +1,7 @@
 Template.addressBookGrid.helpers
   addressBook: ->
-    Meteor.user().profile?.addressBook
+    account = ReactionCore.Collections.Accounts.findOne()
+    return account.profile?.addressBook
 
   selectedBilling: ->
     if @.isBillingDefault
