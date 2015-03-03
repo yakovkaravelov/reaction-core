@@ -81,7 +81,7 @@
                     "summaryMessage": "Thank you for your order."
                 },
                 "checkoutLogin": {
-                    "loginCompleted": "Account completed"
+                    "loginCompleted": "Account completed",
                     "createOrLogin": "Sign in, or checkout as a guest",
                     "continueAsGuest": "Continue as Guest",
                     "guestMessage": "You can checkout without creating an account. You'll have a chance to create an account later."
