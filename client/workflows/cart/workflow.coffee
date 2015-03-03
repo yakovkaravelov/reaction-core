@@ -11,8 +11,7 @@ Tracker.autorun ->
       CartWorkflow.current = cart.state
     else
       Cart.update cart._id, {$set:{state:state}}
-      if state is "login" and Meteor.userId()
-        # console.log "setting logged in"
+      if state is "login" and Session.equals "guest-checkout", true or Meteor.userId()
         CartWorkflow.loggedin()
 
 ###

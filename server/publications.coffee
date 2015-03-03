@@ -1,5 +1,5 @@
 Cart  = ReactionCore.Collections.Cart
-Customers = ReactionCore.Collections.Customers
+Accounts = ReactionCore.Collections.Accounts
 Discounts = ReactionCore.Collections.Discounts
 FileStorage = ReactionCore.Collections.FileStorage
 Media = ReactionCore.Collections.Media
@@ -157,7 +157,7 @@ Meteor.publish 'userOrders', (userId) ->
     userId: this.userId
 
 ###
-# cart collection
+# cart
 ###
 Meteor.publish 'cart', (sessionId, userId) ->
   check sessionId, Match.OneOf(String, null)
@@ -168,6 +168,23 @@ Meteor.publish 'cart', (sessionId, userId) ->
   currentCart = getCurrentCart sessionId, shopId, @userId
   ReactionCore.Events.debug "Publishing cart sessionId:" + sessionId
   return currentCart
+
+###
+# accounts
+###
+Meteor.publish 'accounts', (sessionId, userId) ->
+  check sessionId, Match.OneOf(String, null)
+  check userId, Match.OneOf(String, null)
+  shopId = ReactionCore.getShopId(@)
+  # admin gets it all
+  if Roles.userIsInRole(this.userId, ['admin','owner'])
+    return Accounts.find shopId: shopId
+  # returns userId (authenticated account)
+  else if @userId
+    return Accounts.find userId: @userId, shopId: shopId
+  # return session account (guest)
+  else
+    return Accounts.find sessionId: sessionId
 
 ###
 # tags

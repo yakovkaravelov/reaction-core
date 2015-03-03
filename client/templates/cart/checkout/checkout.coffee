@@ -3,32 +3,36 @@ Template.cartCheckout.helpers
     return Cart.findOne()
 
   loginStatus: () ->
-    unless Meteor.userId()?
+    loginStatus = Session.equals "guest-checkout", true || Meteor.userId()
+    if !loginStatus
       status = false
-    else if Meteor.user()
+    else
       status = "checkout-step-badge-completed"
     return status
 
   addressStatus: () ->
-    if (Meteor.user() and Session.get("billingUserAddressId") and Session.get("shippingUserAddressId"))
+    loginStatus = Session.equals "guest-checkout", true || Meteor.userId()
+    if (loginStatus and Session.get("billingUserAddressId") and Session.get("shippingUserAddressId"))
       status = "checkout-step-badge-completed"
-    else if Meteor.user()
+    else if loginStatus
       status =  "checkout-step-badge"
     else
       status = false
     return status
 
   shippingOptionStatus: () ->
-    if (Meteor.user() and Session.get("billingUserAddressId") and Session.get("shippingUserAddressId") and Session.get("shipmentMethod"))
+    loginStatus = Session.equals "guest-checkout", true || Meteor.userId()
+    if (loginStatus and Session.get("billingUserAddressId") and Session.get("shippingUserAddressId") and Session.get("shipmentMethod"))
       status = "checkout-step-badge-completed"
-    else if (Meteor.user() and Session.get("billingUserAddressId") and Session.get("shippingUserAddressId"))
+    else if (loginStatus and Session.get("billingUserAddressId") and Session.get("shippingUserAddressId"))
       status = "checkout-step-badge"
     else
       status = false
     return status
 
   checkoutReviewStatus: () ->
-    if (Meteor.user() and Session.get("billingUserAddressId") and Session.get("shippingUserAddressId") and Session.get("shipmentMethod"))
+    loginStatus = Session.equals "guest-checkout", true || Meteor.userId()
+    if (loginStatus and Session.get("billingUserAddressId") and Session.get("shippingUserAddressId") and Session.get("shipmentMethod"))
       status = true
     return status
 
