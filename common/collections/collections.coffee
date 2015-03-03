@@ -48,9 +48,9 @@ ReactionCore.Collections.Cart = Cart = @Cart = new Mongo.Collection "Cart",
 
 ReactionCore.Collections.Cart.attachSchema ReactionCore.Schemas.Cart
 
-# Customers (not currently actively used)
-ReactionCore.Collections.Customers = Customers = @Customers = new Mongo.Collection "Customers"
-ReactionCore.Collections.Customers.attachSchema ReactionCore.Schemas.Customer
+# Accounts
+ReactionCore.Collections.Accounts = Accounts = @Accounts = new Mongo.Collection "Accounts"
+ReactionCore.Collections.Accounts.attachSchema ReactionCore.Schemas.Accounts
 
 # Orders
 ReactionCore.Collections.Orders = Orders = @Orders = new Mongo.Collection "Orders"
