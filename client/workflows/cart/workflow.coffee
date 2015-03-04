@@ -11,7 +11,7 @@ Tracker.autorun ->
       CartWorkflow.current = cart.state
     else
       Cart.update cart._id, {$set:{state:state}}
-      if state is "login" and Session.equals "guest-checkout", true or Meteor.userId()
+      if state is "login" and getGuestLoginState()
         CartWorkflow.loggedin()
 
 ###
@@ -62,7 +62,8 @@ CartWorkflow = StateMachine.create(
       #Deps handles change of login
 
     onaddAddress: (event,from, to) ->
-      if Meteor.user()?.profile.addressBook
+      account = ReactionCore.Collections.Accounts.findOne()
+      if account?.profile?.addressBook
         @.shipmentAddress()
 
     onshipmentAddress: (event, from, to, address) ->
