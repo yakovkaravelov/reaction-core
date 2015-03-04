@@ -49,7 +49,7 @@ Match.OptionalOrNull = (pattern) -> Match.OneOf undefined, null, pattern
       currentCart =  Cart.find sessionCart._id
       return currentCart
     #
-    # if sessionCart is authenticated for add user to cart
+    # if sessionCart is authenticated add user to cart
     #
     if userId and !userCart # Do we have an existing user cart?
       Cart.update sessionCart._id, $set: userId: userId

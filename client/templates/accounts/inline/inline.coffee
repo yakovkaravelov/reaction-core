@@ -4,4 +4,4 @@ Template.loginInline.helpers
 
 Template.loginInline.events
   'click .continue-guest': () ->
-    Session.set "guest-checkout", true
+    Session.set "guestCheckoutFlow", true

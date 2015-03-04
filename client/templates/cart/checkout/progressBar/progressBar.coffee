@@ -3,29 +3,29 @@ progressbar status: "visited first","previous visited","active","next"
 ###
 Template.checkoutProgressBar.helpers
   loginStatus: () ->
-    if Meteor.user()
+    if getGuestLoginState()
       status = "previous visited"
     else
       status = "active"
-    status
+    return status
 
   shippingStatus: () ->
-    if (Meteor.user() and Session.get("billingUserAddressId") and Session.get("shippingUserAddressId"))
+    if (getGuestLoginState() and Session.get("billingUserAddressId") and Session.get("shippingUserAddressId"))
       status = "previous visited"
-    else if Meteor.user()
+    else if getGuestLoginState()
       status = "active"
-    status
+    return status
 
   shippingOptionStatus: () ->
-    if (Meteor.user() and Session.get("billingUserAddressId") and Session.get("shippingUserAddressId") and Session.get("shipmentMethod"))
+    if (getGuestLoginState() and Session.get("billingUserAddressId") and Session.get("shippingUserAddressId") and Session.get("shipmentMethod"))
       status = "previous visited"
-    else if (Meteor.user() and Session.get("billingUserAddressId") and Session.get("shippingUserAddressId"))
+    else if (getGuestLoginState() and Session.get("billingUserAddressId") and Session.get("shippingUserAddressId"))
       status = "active"
-    status
+    return status
 
   paymentStatus: () ->
-    if (Meteor.user() and Session.get("billingUserAddressId") and Session.get("shippingUserAddressId") and Session.get("shipmentMethod") and Session.get("paymentMethod"))
+    if (getGuestLoginState() and Session.get("billingUserAddressId") and Session.get("shippingUserAddressId") and Session.get("shipmentMethod") and Session.get("paymentMethod"))
       status = "previous visited"
-    else if (Meteor.user() and Session.get("billingUserAddressId") and Session.get("shippingUserAddressId") and Session.get("shipmentMethod"))
+    else if (getGuestLoginState() and Session.get("billingUserAddressId") and Session.get("shippingUserAddressId") and Session.get("shipmentMethod"))
       status = "active"
-    status
+    return status

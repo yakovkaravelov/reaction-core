@@ -79,9 +79,9 @@ Meteor.methods
     check currentDoc, Match.OneOf(String, null)
     @unblock()
     sessionId = currentDoc
+    currentUserId = Meteor.userId() || ""
 
     # add address
-    currentUserId = Meteor.userId()
     if doc.isShippingDefault
       ReactionCore.Collections.Accounts.update
         userId: currentUserId
@@ -111,26 +111,30 @@ Meteor.methods
     check updateDoc, Object
     check currentDoc, String
     @unblock()
+    sessionId = currentDoc
+    currentUserId = Meteor.userId() || ""
 
     #reset existing default
-    currentUserId = Meteor.userId()
     if doc.isShippingDefault
-      Meteor.users.update
-        _id: currentUserId
+      ReactionCore.Collections.Accounts.update
+        userId: currentUserId
+        sessionId: sessionId
         "profile.addressBook.isShippingDefault": true
       ,
         $set:
           "profile.addressBook.$.isShippingDefault": false
     if doc.isBillingDefault
-      Meteor.users.update
-        _id: currentUserId
+      ReactionCore.Collections.Accounts.update
+        userId: currentUserId
+        sessionId: sessionId
         "profile.addressBook.isBillingDefault": true
       ,
         $set:
           "profile.addressBook.$.isBillingDefault": false
     # update existing address
-    Meteor.users.update
-      _id: currentUserId
+    ReactionCore.Collections.Accounts.update
+      userId: currentUserId
+      sessionId: sessionId
       "profile.addressBook._id": doc._id
     ,
       $set:
