@@ -30,7 +30,8 @@ ReactionCore.Subscriptions.FileStorage = Meteor.subscribe "FileStorage"
 #  ensure user cart is created, and address located
 ###
 Tracker.autorun ->
-  unless (Session.get('address') or Meteor.user()?.profile.addressBook)
+  account = ReactionCore.Collections.Accounts.findOne()
+  unless Session.get('address') or account?.profile?.addressBook
     #Setting Default because we get here before location calc
     address = {
       latitude: null,

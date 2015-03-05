@@ -148,13 +148,15 @@ Meteor.publish 'orders', (userId) ->
   else
     return []
 
-Meteor.publish 'userOrders', (userId) ->
-  check userId, Match.OneOf(String, null)
-  unless userId then return []
+Meteor.publish 'userOrders', (sessionId, userId) ->
+  check sessionId, String
+  check userId, Match.OptionalOrNull(String)
+
   # return user orders
   return Orders.find
     shopId: ReactionCore.getShopId(@)
-    userId: this.userId
+    userId: userId
+    sessionId: sessionId
 
 ###
 # cart
