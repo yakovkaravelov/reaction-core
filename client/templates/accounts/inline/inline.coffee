@@ -1,6 +1,6 @@
 Template.loginInline.helpers
-  canCheckoutAsGuest: ->
-    return ReactionCore.canCheckoutAsGuest
+  allowGuestCheckout: ->
+    return ReactionCore.allowGuestCheckout
 
 Template.loginInline.events
   'click .continue-guest': () ->

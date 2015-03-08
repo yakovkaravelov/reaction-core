@@ -214,6 +214,9 @@ Package.onUse(function (api) {
     "client/templates/accounts/dropdown/dropdown.html",
     "client/templates/accounts/dropdown/dropdown.coffee",
 
+    "client/templates/accounts/profile/profile.html",
+    "client/templates/accounts/profile/profile.coffee",
+
     "client/templates/cart/cartDrawer/cartDrawer.html",
     "client/templates/cart/cartDrawer/cartDrawer.coffee",
 
@@ -268,18 +271,6 @@ Package.onUse(function (api) {
     "client/templates/cart/checkout/completed/completed.html",
     "client/templates/cart/checkout/completed/completed.coffee",
 
-    "client/templates/cart/checkout/completed/orderLayout/orderLayout.html",
-    "client/templates/cart/checkout/completed/orderLayout/orderLayout.coffee",
-
-    "client/templates/cart/checkout/completed/orderLayout/orderItems/orderItems.html",
-    "client/templates/cart/checkout/completed/orderLayout/orderItems/orderItems.coffee",
-
-    "client/templates/cart/checkout/completed/orderLayout/orderSummary/orderSummary.html",
-    "client/templates/cart/checkout/completed/orderLayout/orderSummary/orderSummary.coffee",
-
-    "client/templates/cart/checkout/completed/pdfLayout/pdfLayout.html",
-    "client/templates/cart/checkout/completed/pdfLayout/pdfLayout.coffee",
-
     "client/templates/cart/checkout/shipping/shipping.html",
     "client/templates/cart/checkout/shipping/shipping.coffee",
 
@@ -294,6 +285,18 @@ Package.onUse(function (api) {
 
     "client/templates/dashboard/orders/orders.html",
     "client/templates/dashboard/orders/orders.coffee",
+
+    "client/templates/dashboard/orders/list/ordersList.html",
+    "client/templates/dashboard/orders/list/ordersList.coffee",
+
+    "client/templates/dashboard/orders/list/items/items.html",
+    "client/templates/dashboard/orders/list/items/items.coffee",
+
+    "client/templates/dashboard/orders/list/summary/summary.html",
+    "client/templates/dashboard/orders/list/summary/summary.coffee",
+
+    "client/templates/dashboard/orders/list/pdf/pdf.html",
+    "client/templates/dashboard/orders/list/pdf/pdf.coffee",
 
     "client/templates/dashboard/orders/widget/widget.html",
     "client/templates/dashboard/orders/widget/widget.coffee",

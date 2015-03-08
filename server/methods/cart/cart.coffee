@@ -135,10 +135,12 @@ Meteor.methods
         ReactionCore.Events.info Cart.simpleSchema().namedContext().invalidKeys() if error
     # add new cart items
     else
+      product = ReactionCore.Collections.Products.findOne productId
       Cart.update _id: currentCart._id,
         $addToSet:
           items:
             _id: Random.id()
+            shopId: product.shopId
             productId: productId
             quantity: quantity
             variants: variantData

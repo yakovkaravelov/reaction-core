@@ -31,20 +31,12 @@ Accounts.onCreateUser (options, user) ->
 
 ###
 # setting defaults of mail from shop configuration
-# TODO: refactor for multiple email providers, not even sure this is used
-# anymore!
+# TODO: refactor for multiple email providers
 ###
 setMailUrlForShop = (shop) ->
-  mailgun = ReactionCore.Collections.Packages.findOne({shopId:shop._id, name:'reaction-mailgun'})
-  sCES = null
-  if mailgun and mailgun.settings
-    sCES = mailgun.settings
-  else
-    if shop.useCustomEmailSettings
-      sCES = shop.customEmailSettings
-
-  if sCES
-      process.env.MAIL_URL = "smtp://" + sCES.username + ":" + sCES.password + "@" + sCES.host + ":" + sCES.port + "/"
+  coreMail = ReactionCore.Collections.Packages.findOne(name: "core").settings.mail
+  mailUrl = "smtp://" + coreMail.username + ":" + coreMail.password + "@" + coreMail.host + ":" + coreMail.port + "/"
+  Meteor.settings.MAIL_URL = process.env.MAIL_URL || mailUrl
 
 Meteor.methods
   ###

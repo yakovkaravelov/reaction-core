@@ -53,7 +53,14 @@ ReactionCore.Collections.Accounts = Accounts = @Accounts = new Mongo.Collection 
 ReactionCore.Collections.Accounts.attachSchema ReactionCore.Schemas.Accounts
 
 # Orders
-ReactionCore.Collections.Orders = Orders = @Orders = new Mongo.Collection "Orders"
+ReactionCore.Collections.Orders = Orders = @Orders = new Mongo.Collection "Orders",
+  transform: (order) ->
+    order.itemCount = ->
+      count = 0
+      ((count += items.quantity) for items in order.items) if order?.items
+      return count
+    return order
+
 ReactionCore.Collections.Orders.attachSchema [ReactionCore.Schemas.Cart, ReactionCore.Schemas.OrderItems]
 
 # Packages

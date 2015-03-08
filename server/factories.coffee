@@ -20,7 +20,6 @@ Factory.define 'shop', ReactionCore.Collections.Shops,
   domains: ["localhost"]
   email: 'root@localhost'
   currency: "USD"
-  currencyEngine: undefined
   currencies: []
   public: true
   timezone: '1'
@@ -29,11 +28,6 @@ Factory.define 'shop', ReactionCore.Collections.Shops,
   members: []
   metafields: []
   useCustomEmailSettings: false
-  customEmailSettings:
-    username: ''
-    password: ''
-    host: ''
-    port: 25
   createdAt: -> new Date()
   updatedAt: -> new Date()
 

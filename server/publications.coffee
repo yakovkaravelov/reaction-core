@@ -80,13 +80,16 @@ Meteor.publish "Packages", ->
     if Roles.userIsInRole(this.userId, ['dashboard','owner','admin'])
       return Packages.find shopId: shop._id
     else
-      # all read access to settings,etc is blocked
+      # settings.public published
+      # other access to settings,etc is blocked
       # for non administrative views
       return Packages.find { shopId: shop._id},
         fields:
           name: true
           enabled: true
           registry: true
+          shopId: true
+          'settings.public': true
       # TODO Filter roles/security here for package routes/template access.
   else
     return []
@@ -149,14 +152,14 @@ Meteor.publish 'orders', (userId) ->
     return []
 
 Meteor.publish 'userOrders', (sessionId, userId) ->
-  check sessionId, String
+  check sessionId, Match.OptionalOrNull(String)
   check userId, Match.OptionalOrNull(String)
-
+  shopId = ReactionCore.getShopId(@)
+  # cure for null query match
+  unless userId then userId = ''
+  unless sessionId then sessionId = ''
   # return user orders
-  return Orders.find
-    shopId: ReactionCore.getShopId(@)
-    userId: userId
-    sessionId: sessionId
+  return Orders.find({'shopId': shopId, $or: [{'userId': userId}, {'sessionId': sessionId}] })
 
 ###
 # cart

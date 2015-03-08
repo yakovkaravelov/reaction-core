@@ -2,7 +2,6 @@
     {
         "_id": "WvrKDomkYth3THbDD",
         "baseUOM": "OZ",
-        "canCheckoutAsGuest": true,
         "currencies": {
             "AED": {
                 "format": "%v %s",
@@ -370,13 +369,6 @@
             }
         },
         "currency": "USD",
-        "currencyEngine": {
-            "provider": "OXR",
-            "apiKey": ""
-        },
-        "customEmailSettings": {
-            "port": 25
-        },
         "domains": [
             "localhost"
         ],
@@ -2866,10 +2858,6 @@
             "KG": {
                 "name": "Kilograms"
             }
-        },
-        "updatedAt": {
-            "$date": "2015-01-22T12:23:34.362-0800"
-        },
-        "useCustomEmailSettings": false
+        }
     }
 ]

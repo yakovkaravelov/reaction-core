@@ -313,3 +313,10 @@ correctDropdownZIndexes = ->
     n.style.zIndex = 1  if n.style.zIndex is 0
     n = n.parentNode
   return
+
+###
+# use all this with the unauthorized login as well
+###
+
+Template.unauthorized.inheritsHelpersFrom "accounts"
+Template.unauthorized.inheritsEventsFrom "accounts"

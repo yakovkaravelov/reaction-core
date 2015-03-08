@@ -6,6 +6,9 @@ ReactionCore.Schemas.CartItem = new SimpleSchema
     type: String
   productId:
     type: String
+  shopId:
+    type: String
+    autoValue: ReactionCore.shopIdAutoValue
   quantity:
     label: "Quantity"
     type: Number

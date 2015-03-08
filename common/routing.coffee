@@ -44,7 +44,8 @@ ShopController = @ShopController
   waitOn: ->
     @subscribe "shops"
   onBeforeAction: () ->
-    unless ReactionCore.hasPermission(@route.getName())
+    # could check for roles here for dashboard access
+    unless ReactionCore.hasPermission(@route.getName()) and Meteor.userId()
       @render('unauthorized')
     else
       @next()
@@ -157,7 +158,24 @@ Router.map ->
     data: ->
       if @ready()
         if Orders.findOne(@params._id)
-          return Orders.findOne(@params._id)
+          return ReactionCore.Collections.Orders.find({'_id': @params._id})
+        else
+          @render 'unauthorized'
+      else
+        @render "loading"
+
+  #account profile
+  @route 'account/profile',
+    controller: ShopController
+    path: 'account/profile'
+    template: 'accountProfile'
+    subscriptions: ->
+      @subscribe "userOrders", Session.get("sessionId"), Meteor.userId()
+    data: ->
+      if @ready()
+        if Orders.findOne() or Meteor.userId()
+          # if subscription has results or Meteor userId
+          return ReactionCore.Collections.Orders.find({}, {sort: { createdAt: -1 }})
         else
           @render 'unauthorized'
       else
